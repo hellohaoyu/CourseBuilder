@@ -1,0 +1,71 @@
+{% extends 'base_course.html' %}
+
+{% block gcb_page_info %}
+  if ('gcbSetPageInfo' in window) {
+    gcbSetPageInfo({
+      'page_type': 'assessment',
+      'assessment_id': '{{ assessment_name }}',
+      'unit_id': '{{ unit_id }}',
+    });
+  }
+{% endblock %}
+
+{% block subtitle %}
+  {# I18N: Title of the webpage. #}
+  - {{ gettext('Assessment') }}
+{% endblock subtitle %}
+
+{% block top_content %}
+  <div class="gcb-cols">
+    <div class="gcb-col-11 gcb-aside">
+      {% include 'summary.html' %}
+
+    </div>
+</div>
+{% endblock %}
+
+{% block main_content %}
+
+  <section class="main">
+    <div class="wrap">
+    <div class = "summary">
+        <section class="box left">
+        <div class="boxInner">
+          <h2>All our resources</h2>
+          <table class = "summary">
+            <tbody>
+              <tr>
+
+                <h3>Related Links</h3>
+                <p>
+                  <a href="http://www.cs.virginia.edu/tapestry/2014/uva/resources/sessions/">2014 UVA Tapestry Resources</a>
+                </p>
+                <p>
+                  <a href="http://www.cs.virginia.edu/~cohoon//tapestry-videos/">Videos of 2014 UVA Tapestry Resources</a>
+                </p>
+                <p>
+                  <a href="http://www.aacc.nche.edu/Pages/default.aspx">American Association of Community College Teachers</a>
+                </p>
+                <h3>All the slides</h3>
+                <p>
+                  <a href="/assets/slides/1/3/Slide11.jpg">local resources in: /assets/slides</a>
+                </p>
+                <h3>Enjoy all videos on Youtube</h3>
+                <p>
+                  <a href="/assets/slides/1/3/Slide11.jpg">local resources in: /assets/slides</a>
+                </p>
+            </tbody>
+          </table>
+
+        </div>
+      </section>
+    </div>
+
+
+<!-- preview.after_main_content_ends -->
+
+    </div>
+  </section>
+
+  {{course_info.preview.after_main_content_ends | safe}}
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base_course.html' %}
+
+{% block gcb_page_info %}
+  if ('gcbSetPageInfo' in window) {
+    gcbSetPageInfo({
+      'page_type': 'forum',
+    });
+  }
+{% endblock %}
+
+{% block subtitle %}
+  {# I18N: Title of the webpage. #}
+  - {{ gettext('Forum') }}
+{% endblock subtitle %}
+
+{% block top_content %}
+      {% include 'summary.html' %}
+{% endblock %}
+
+{% block main_content %}
+<section class="main">
+      <div class="wrap">
+      <section class="box left">
+        <div class="boxInner">
+          <iframe id="forum_embed"
+            src="javascript:void(0)"
+            scrolling="no"
+            title="Forum"
+            frameborder="0"
+            width="900"
+            height="700">
+          </iframe>
+
+          {% if course_info.course.forum_embed_url %}
+          <script type="text/javascript">
+              document.getElementById("forum_embed").src =
+              "{{course_info.course.forum_embed_url}}"
+              + "&showsearch=true&showpopout=true&showtabs=false"
+              + "&parenturl=" + encodeURIComponent(window.location.href);
+          </script>
+          {% endif %}
+
+
+          <script type="text/javascript">
+            document.getElementById('forum_embed').src =
+               'https://groups.google.com/forum/embed/?place=forum/mooc1003'
+               + '&showsearch=true&showpopout=true&showtabs=false'
+               + '&parenturl=' + encodeURIComponent(window.location.href);
+          </script>
+        </div>
+      </section>
+      </div>
+</section>
+{% endblock %}

@@ -1,0 +1,142 @@
+{% extends 'base_course.html' %}
+
+{% block gcb_page_info %}
+  if ('gcbSetPageInfo' in window) {
+    gcbSetPageInfo({
+      'page_type': 'preview',
+    });
+  }
+{% endblock %}
+
+{% block top_content %}
+  <section class="hero">
+    <div class="wrap">
+      <h1>  {{course_info.course.title}}</h1>
+
+      <p>
+      {{course_info.course.blurb | gcb_tags}}
+      </p>
+
+      {% if transient_student %}
+        <a class="button" href="register" role="button">
+          {{ gettext('Register') }}
+        </a>
+      {% endif %}
+
+    </div>
+  </section>
+  {{course_info.preview.after_top_content_ends | safe}}
+{% endblock %}
+
+{% block main_content %}
+
+  <section class="main">
+    <div class="wrap">
+    <div class = "summary">
+        <section class="box left">
+        <div class="boxInner">
+          <h2>Summary</h2>
+          <table class = "summary">
+            <tbody>
+              <tr>
+                The goals of the workshop are to share strategies, research-based practices, and field-tested good ideas for teaching computer science in a way that reaches all students regardless of sex or ethnicity.
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </section>
+    </div>
+
+    <div class="content">
+      <section class="box left">
+        <div class="boxInner">
+          <h2>Schedule</h2>
+          <table class="previewTimetable">
+            <tbody>
+              {% for unit in units %}
+                <tr>
+                  <th> {{ gettext('Unit %(id)s', id=unit.index) }} </th>
+                  <td>{{ gettext('%(title)s', title=unit.title) }}</td>
+                </tr>
+              {% endfor %}
+              <tr>
+              </tr>
+              <tr>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class="sidebar">
+      <section class="box right">
+        <div class="boxInner">
+          <h2>Instructors</h2>
+
+          <div class="instructor">
+            <img src="assets/img/joanne.jpg" alt="Joanne" align = "left" height="60" width="60" >
+            <h3> &nbsp;&nbsp;&nbsp; JOANNE COHOON </h3>
+            <p>
+              Joanne McGrath Cohoon is an NCWIT Senior Research Scientist and  Associate Professor at UVa.
+            </p>
+          </div>
+          <div class="instructor">
+            <img src="assets/img/jim.jpg" alt="Joanne" align = "left" height="60" width="60" >
+            <h3> &nbsp;&nbsp;&nbsp; JIM COHOON</h3>
+
+            <p>
+              James P. Cohoon is an Associate Professor of Computer Science department at UVa.
+            </p>
+          </div>
+
+          <div class="clear"></div>
+        </div>
+      </section>
+    </div>
+    <div class="wrap">
+    <div class = "summary">
+        <section class="box left">
+        <div class="boxInner">
+          <h2>Suggested Reading</h2>
+          <table class = "summary">
+            <tbody>
+              <tr>
+                The goals of the workshop are to share strategies, research-based practices, and field-tested good ideas for teaching computer science in a way that reaches all students regardless of sex or ethnicity.
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </section>
+    </div>
+    <div class = "content">
+      <section class="box left">
+        <div class="boxInner">
+          <h2>Grading</h2>
+          <p>
+            You will have several homeworks and in-class quiz , as well as a final.
+          </p>
+        </div>
+      </section>
+    </div>
+    <div class = "sidebar">
+      <section class="box left">
+        <div class="boxInner">
+          <h2> FAQ </h2>
+          <p>
+            Here is the questions now.
+          </p>
+
+        </div>
+      </section>
+    </div>
+
+<!-- preview.after_main_content_ends -->
+
+    </div>
+  </section>
+
+  {{course_info.preview.after_main_content_ends | safe}}
+{% endblock %}

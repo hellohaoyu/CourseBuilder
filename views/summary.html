@@ -1,0 +1,12 @@
+<section class="banner">
+  <div class="wrap">
+    <h1>  {{course_info.course.title}}</h1>
+
+	  {% if transient_student %}
+      <a class="button" href="register" role="button">
+        {{ gettext('Register') }}
+      </a>
+    {% endif %}
+
+  </div>
+</section>

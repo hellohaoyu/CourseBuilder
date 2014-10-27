@@ -1,0 +1,254 @@
+{% extends 'base_course.html' %}
+
+{% block gcb_page_info %}
+  if ('gcbSetPageInfo' in window) {
+    gcbSetPageInfo({
+      'page_type': 'unit',
+      'unit_id': '{{ unit_id }}',
+      {% if lesson_id %}
+        'lesson_id': '{{ lesson_id }}',
+      {% endif %}
+    });
+  }
+{% endblock %}
+
+{% block subtitle %}
+  {# I18N: Title of the webpage. #}
+  - {{ gettext('lesson') }}{{ gettext('Unit') }} {{ gettext('.') }}{{ unit.index }} - {{ unit.title }}
+{% endblock subtitle %}
+
+{% block top_content %}
+  {% include 'summary.html' %}
+{% endblock %}
+
+{% block main_content %}
+<section class="main">
+      <div class="wrap">
+      <section class="box left">
+        <div class="boxInner">
+
+        <script>
+          var questionData = {};
+          {% if lesson and lesson.scored %}
+            questionData.scored = true;
+          {% else %}
+            questionData.scored = false;
+          {% endif %}
+        </script>
+
+
+          {% if is_read_write_course and is_course_admin %}
+            <a href="dashboard?action=edit_unit&key={{ unit_id }}"
+              class="button edit">Edit unit</a>
+            {% if lesson %}
+              <a href="dashboard?action=edit_lesson&key={{ lesson_id }}"
+                class="button edit">Edit lesson</a>
+            {% endif %}
+          {% endif %}
+          <!--
+          <div>
+            <h1 class="gcb-unit-header">
+              {# I18N: Header text for a unit page. #}
+              {{ gettext('Unit %(id)s - %(title)s', id=unit.index, title=unit.title) }}
+            </h1>
+          </div>
+          <!-->
+
+          {% if lessons %}
+            {% include 'lesson_navbar.html' %}
+          {% endif %}
+          <!--
+            <div>
+              <h1 class="lessonTitle">
+                {# I18N: Header text for a unit page. #}
+                {{ gettext('Unit %(id)s - %(title)s', id=unit.index, title=unit.title) }}
+              </h1>
+            </div>
+          <!-->
+
+
+          <div class="gcb-article tab-content" role="main">
+            {{course_info.unit.after_content_begins | safe}}
+
+            {% if not lesson %}
+              <div style="padding-bottom: 20px;">
+                <div class="gcb-aside gcb-button-box">
+                  {# I18N: Text shown for a unit that has had no lessons added to it yet. #}
+                  {{ gettext('This unit does not contain any lessons.') }}
+                </div>
+              </div>
+            {% else %}
+
+              <div style="padding-bottom: 20px;">
+                <div class="gcb-aside gcb-button-box">
+                  {% if lesson.now_available or is_course_admin %}
+                    <div class="gcb-cols">
+                      <div class="gcb-col-7">
+                        <h1 class="lessonTitle">
+                          {{ gettext('Lesson %(id)s.%(lesson)s - %(title)s', id=unit.index, lesson = lesson.lesson_id, title=lesson.title) }}
+                          {% if not lesson.now_available and is_course_admin %}
+                            <span id="lesson-title-private">
+                              (Private)
+                            </span>
+                          {% endif %}
+                        </h1>
+
+                      </div>
+
+                      <div class="gcb-col-3">
+                        <p style="float:right; margin-top: 0px;">
+                          {% if lesson.notes %}
+                          <a role="button" class="button" id="lessonNotesLink" href="{{ lesson.notes }}" target="_blank">
+                            {# I18N: Link to a text version of a lesson video. #}
+                            {{ gettext('Slides here') }}
+                          </a>
+                          {% endif %}
+                        </p>
+                      </div>
+
+                    </div><!-- /gcb-cols -->
+
+                    {% if objectives %}
+                      <div class="gcb-lesson-content">
+                        {{ objectives | gcb_tags}}
+                        {% if lesson.scored %}
+                          <div class="qt-grade-scored-lesson qt-hidden">
+                            <button class="gcb-button qt-check-answer-button">
+                              {# I18N: Button at the bottom of a lesson page offering the student the opportunity to grade his/her answers. #}
+                              {{ gettext('Grade Questions') }}
+                            </button>
+                          </div>
+                          <div class="qt-grade-report qt-hidden"></div>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+
+                    {% if lesson.video %}
+                    <!--
+                      <p class="gcb-video-container">
+                        {# I18N: Alt text for an embedded YouTube video player. #}
+                        <iframe class="youtube-player" title="{{ gettext('YouTube Video Player') }}"
+                                type="text/html" width="510" height="320" frameborder="0" allowfullscreen
+                                src="https://www.youtube.com/embed/{{ lesson.video }}?feature=player_embedded&rel=0">
+                        </iframe>
+
+                      </p>
+                    !-->
+                      <script src="assets/js/jquery.csv.min.js"></script>
+                      <section class="videoContainer">
+                            <div class="video">
+                              <iframe id="youtubeVid" frameborder="0" allowfullscreen="1" title="YouTube video player" width="640" height="360" src="https://www.youtube.com/embed/{{ lesson.video }}?enablejsapi=1&origin=http://localhost:10080"></iframe>
+                            </div>
+
+                            <div id="slideshow"><img src="/assets/slides/1/3/Slide01.jpg"></div>
+
+                      </section>
+
+                      <script>
+                          //import YouTube API script
+                          var tag = document.createElement('script');
+                          tag.src = "https://www.youtube.com/iframe_api";
+                          var firstScriptTag = document.getElementsByTagName('script')[0];
+                          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+                          //create the YouTube Player
+                          var player;
+                          var timer;
+                          // get video id
+                          var vid = "{{ lesson.video }}";
+
+                          function onYouTubeIframeAPIReady() {
+                            player = new YT.Player('youtubeVid', {
+                              videoId: vid,
+                              events: {
+                                'onStateChange': onPlayerStateChange
+                              }
+                            });
+                          }
+
+                          //import csv file data to a JS array of objects
+                          var csv, currentSlide = "";
+
+                          var file = "{{ gettext('/assets/csv/%(unit_id)s/%(lesson_id)s.csv', unit_id=unit.index, lesson_id = lesson.lesson_id) }}";
+
+                          $.ajax({
+                            url: file,
+                            async: false,
+                            success: function(data) {
+                              csv = data;
+                            }
+                          });
+
+                          var slideArray = $.csv.toObjects(csv);
+
+                          document.getElementById('slideshow').innerHTML = "<img src='" + slideArray[0].SLIDE_URL + "'/>";
+
+                          //change slide based on position in video
+                          function onPlayerStateChange(event) {
+                            if (event.data == YT.PlayerState.PLAYING) {
+                              timer = setInterval(changeSlide, 1000);
+                            }
+                            else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
+                              clearInterval(timer);
+                            }
+                          }
+
+                          function changeSlide() {
+                            var position = Math.round(player.getCurrentTime());
+
+                            for(var i=0; i<slideArray.length; i++) {
+                              if (position >= slideArray[i].TIME && (undefined == slideArray[i+1] || position < slideArray[i+1].TIME)) {
+                                if (currentSlide != slideArray[i].SLIDE_URL) {
+                                  document.getElementById('slideshow').innerHTML = "<img src='" + slideArray[i].SLIDE_URL + "'/>";
+                                  currentSlide = slideArray[i].SLIDE_URL;
+                                }
+                              }
+                            }
+                          }
+                        </script>
+                    {% endif %}
+
+                  {% else %}
+
+                    <h1 class="lessonTitle">
+                      {{ lesson.title }}
+                    </h1>
+
+                    <br><br>
+
+                    <div>
+                      {# I18N: Text shown for a lesson that has not been made public. #}
+                      {{ gettext('This lesson is not available.')}}
+                    </div>
+
+                  {% endif %}
+                </div><!-- /gcb-aside -->
+
+                <div class="gcb-button-box" {% if course_info.unit.hide_lesson_navigation_buttons %}style="display: none;"{% endif%}>
+                  <div class="gcb-prev-button">
+                    {% if back_button_url %}
+                      {# I18N: Text on the navigation button at the end of a lesson page. #}
+                      <a href="{{ back_button_url }}"> {{ gettext('Previous Page') }} </a>
+                    {% endif %}
+                  </div>
+                  <div class="gcb-next-button">
+                    {% if next_button_url %}
+                      {# I18N: Text on the navigation button at the end of a lesson page. #}
+                      <a href="{{ next_button_url }}"> {{ gettext('Next Page') }} </a>
+                    {% else %}
+                      {# I18N: Text on the navigation button at the end of a lesson. It signals that the student has completed a unit (which is a series of lessons). #}
+                      <a href="course"> {{ gettext('End') }} </a>
+                    {% endif %}
+                  </div>
+                </div>
+
+              </div>
+            {% endif %}
+
+            {{course_info.unit.before_content_ends | safe}}
+
+        </div>
+      </section>
+      </div>
+</section>
+{% endblock %}

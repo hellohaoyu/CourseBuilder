@@ -1,0 +1,201 @@
+{% extends 'base_course.html' %}
+
+{% block gcb_page_info %}
+  if ('gcbSetPageInfo' in window) {
+    gcbSetPageInfo({
+      'page_type': 'course',
+    });
+  }
+{% endblock %}
+
+
+{% block top_content %}
+  <script>
+    {# I18N: This is shown to the student in a popup after registration. #}
+    var regConfirmationMsg = "{{ gettext('Thank you for registering for the course. Click the Announcements tab for important information.') }}";
+    if(window.location.hash == '#registration_confirmation') {
+      cbShowMsg(regConfirmationMsg);
+      setTimeout(function() {cbHideMsg();}, 20000);
+    }
+    {# I18N: This is shown to the student in a popup if registrations for the course are not open. #}
+    var regClosedMsg = "{{ gettext('Registrations for this course are not open.') }}";
+    if(window.location.hash == '#registration_closed') {
+      cbShowMsg(regClosedMsg);
+      setTimeout(function() {cbHideMsg();}, 20000);
+    }
+  </script>
+  <div class="gcb-cols">
+    <div class="gcb-col-11 gcb-aside">
+      {% include 'summary.html' %}
+
+    </div>
+</div>
+{% endblock %}
+
+{% block main_content %}
+<section class="main">
+<div class = "wrap">
+  <div class="summary">
+    <section class="box left">
+      <div class="boxInner">
+        <h2>Schedule</h2>
+        <table class="previewTimetable">
+          <tbody>
+            <tr>
+            </tr>
+            <tr>
+              <ul style="list-style-type:none;">
+                {% for unit in units %}
+                  {% if unit.now_available or is_course_admin %}
+                    {% if unit.type == 'A' %}
+                      <li><p class="gcb-top-content">
+                        {% if not transient_student %}
+                          {% if progress[unit.unit_id] > 0 %}
+                            <img src="assets/lib/completed.png"
+                                 alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
+                                 title="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
+                                 class="gcb-progress-icon"
+                                 id="progress-completed-{{unit.unit_id}}">
+                          {% else %}
+                            <img src="assets/lib/not_started.png"
+                                 alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Not yet submitted') }}"
+                                 title="{# I18N: Alt text for image representing student progress. #}{{ gettext('Not yet submitted') }}"
+                                 class="gcb-progress-icon"
+                                 id="progress-notstarted-{{unit.unit_id}}">
+                          {% endif %}
+                        {% else %}
+                          <span class="gcb-progress-empty"></span>
+                        {% endif %}
+                        <a href="assessment?name={{ unit.unit_id }}">{{ unit.title }}</a>
+
+                        {% if unit.needs_human_grader %}
+                          {% if not unit.now_available and is_course_admin %}
+                            (Private)
+                          {% endif %}
+                          </p></li>
+                          <li>
+                            <p class="gcb-top-content">
+                              <span class="gcb-progress-empty"></span>
+
+                            {% if not transient_student %}
+                              {% if unit.review_progress == 2 %}
+                                <img src="assets/lib/completed.png"
+                                     alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
+                                     title="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
+                                     class="gcb-progress-icon"
+                                     id="progress-completed-review-{{unit.unit_id}}">
+                              {% elif unit.review_progress == 1 %}
+                                <img src="assets/lib/in_progress.png"
+                                     alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('In progress') }}"
+                                     title="{# I18N: Alt text for image representing student progress. #}{{ gettext('In progress') }}"
+                                     class="gcb-progress-icon"
+                                     id="progress-inprogress-review-{{unit.unit_id}}">
+                              {% else %}
+                                <img src="assets/lib/not_started.png"
+                                     alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Not yet submitted') }}"
+                                     title="{# I18N: Alt text for image representing student progress. #}{{ gettext('Not yet submitted') }}"
+                                     class="gcb-progress-icon"
+                                     id="progress-notstarted-review-{{unit.unit_id}}">
+                              {% endif %}
+                            {% endif %}
+
+                            {% if unit.is_submitted %}
+                              <a href="reviewdashboard?unit={{ unit.unit_id }}">
+                                {% if unit.matcher == 'peer' %}
+                                  {# I18N: Displayed in the course contents page. Indicates a page to which students can go to review other students' assignments. #}
+                                  {{ gettext('Review peer assignments') }}
+                                {% endif %}
+                              </a>
+                            {% else %}
+                              <span>
+                                {% if unit.matcher == 'peer' %}
+                                  {# I18N: Displayed in the course contents page. Indicates a page to which students can go to review other students' assignments. #}
+                                  {{ gettext('Review peer assignments') }}
+                                {% endif %}
+                              </span>
+                            {% endif %}
+
+                        {% endif %}
+
+                    {% elif unit.type == 'U' %}
+                      <li><p class="gcb-top-content">
+                        {% if is_progress_recorded and not transient_student %}
+                          {% if progress[unit.unit_id] == 2 %}
+                            <img src="assets/lib/completed.png"
+                                 alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
+                                 title="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
+                                 class="gcb-progress-icon"
+                                 id="progress-completed-{{unit.unit_id}}">
+                          {% elif progress[unit.unit_id] == 1 %}
+                            <img src="assets/lib/in_progress.png"
+                                 alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('In progress') }}"
+                                 title="{# I18N: Alt text for image representing student progress. #}{{ gettext('In progress') }}"
+                                 class="gcb-progress-icon"
+                                 id="progress-inprogress-{{unit.unit_id}}">
+                          {% else %}
+                            <img src="assets/lib/not_started.png"
+                                 alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Not yet started') }}"
+                                 title="{# I18N: Alt text for image representing student progress. #}{{ gettext('Not yet started') }}"
+                                 class="gcb-progress-icon"
+                                 id="progress-notstarted-{{unit.unit_id}}">
+                          {% endif %}
+                        {% else %}
+                          <span class="gcb-progress-empty"></span>
+                        {% endif %}
+
+                        <a href="unit?unit={{ unit.unit_id }}">
+                          {# I18N: A row in the course schedule. #}
+                          {{ gettext('Unit %(id)s - %(title)s', id=unit.index, title=unit.title) }}
+                        </a>
+                          {% if lessons %}
+                            {% include 'lesson_navbar.html' %}
+                          {% endif %}
+                    {% elif unit.type == 'O' %}
+                      <li>
+                        <p class="gcb-top-content">
+                          <span class="gcb-progress-empty"></span>
+                          <a href="{{ unit.href }}"> {{ unit.title }} </a>
+                          {% if lessons %}
+                            {% include 'lesson_navbar.html' %}
+                          {% endif %}
+                    {% else %}
+                      <li>
+                        <p class="gcb-top-content">
+                          <span class="gcb-progress-empty"></span>
+                          Error: unit type not recognized.
+                    {% endif %}
+                        {% if not unit.now_available and is_course_admin %}
+                          (Private)
+                        {% endif %}
+                        </p>
+                      </li>
+                  {% endif %}
+
+                {% endfor %}
+              </ul>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="box left">
+      <div class="boxInner">
+        <h2>Recommended Reading</h2>
+        <div class="left book">
+          <img src="/assets/img/books/howpeoplelearn.jpeg" width="90" height="120" alt="Designing Web Usability">
+          <h4>How people learn</h4>
+          <p> John D. Bransford</p>
+        </div>
+
+        <div class="left book">
+          <img src="/assets/img/books/arcs.jpg" width="90" height="120" alt="Designing Web Usability">
+          <h4>ARCS Model of Motivational Design</h4>
+          <p>Keller</p>
+        </div>
+
+      </div>
+    </section>
+  </div>
+</div>
+</session>
+{% endblock %}

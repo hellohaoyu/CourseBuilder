@@ -1,0 +1,50 @@
+{% extends 'base_course.html' %}
+
+{% block gcb_page_info %}
+  if ('gcbSetPageInfo' in window) {
+    gcbSetPageInfo({
+      'page_type': 'unenroll_confirmation_check',
+    });
+  }
+{% endblock %}
+
+{% block top_content %}
+<div class="gcb-cols">
+  <div class="gcb-col-11 gcb-aside">
+    {% include 'summary.html' %}
+
+  </div>
+</div>
+{% endblock %}
+
+
+
+{% block main_content %}
+<section class="main">
+      <div class="wrap">
+      <section class="box left">
+        <div class="boxInner">
+
+        <h3>
+          {# I18N: Shown when a student has asked to unenroll from a course. Followed by a course name. #}
+          {{ gettext('Are you sure you want to unenroll from ') }}
+          {{course_info.course.title}}?
+        </h3>
+        <br>
+        <form action="student/unenroll" method='post'>
+          <input type="hidden" name="xsrf_token" value="{{ student_unenroll_xsrf_token|escape }}">
+          <button class="button" type="submit">
+            {# I18N: Response option to 'Are you sure you want to unenroll from COURSE_NAME'? #}
+            {{ gettext('Yes') }}
+          </button>
+          <a role="button" href="student/home" class="button blue" type="submit">
+            {# I18N: Response option to 'Are you sure you want to unenroll from COURSE_NAME'? #}
+            {{ gettext('No') }}
+          </a>
+        </form>
+
+        </div>
+      </section>
+    </div>
+</section>
+{% endblock %}

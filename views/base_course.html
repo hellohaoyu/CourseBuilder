@@ -62,6 +62,10 @@
           <li><a href="{{ loginUrl }}">{{ gettext('Login') }}</a></li>
         {% endif %}
 
+        {% if logoutUrl %}
+          <li><a href="{{ logoutUrl }}">{{ gettext('Logout') }}</a></li>
+        {% endif %}
+
 
       </ul>
   </nav>
@@ -70,10 +74,8 @@
         <a href="dashboard">Dashboard</a>
     {% endif %}
             <!-- base.before_navbar_ends -->
-    {% if logoutUrl %}
-        <a href="{{ logoutUrl }}">{{ gettext('Logout') }}</a>
-    {% endif %}
-    
+
+
     {% if is_super_admin %}
         <a href="/admin">Admin</a>
     {% endif %}

@@ -58,29 +58,30 @@
         {% else %}
           <li><a href="register">{{ gettext('Registration') }}</a></li>
         {% endif %}
-        {% if is_super_admin %}
-          <li class="gcb-pull-right">
-            <a href="/admin">Admin</a>
-          </li>
-        {% endif %}
-        {% if is_course_admin %}
-          <li class="gcb-pull-right">
-            <a href="dashboard">Dashboard</a>
-          </li>
+        {% if loginUrl %}
+          <li><a href="{{ loginUrl }}">{{ gettext('Login') }}</a></li>
         {% endif %}
 
-        <!-- base.before_navbar_ends -->
-        {% if logoutUrl %}
-          <li class="gcb-pull-right">
-            <a href="{{ logoutUrl }}">{{ gettext('Logout') }}</a>
-          </li>
-        {% elif loginUrl %}
-          <li class="gcb-pull-right">
-            <a href="{{ loginUrl }}">{{ gettext('Login') }}</a>
-          </li>
-        {% endif %}
 
       </ul>
   </nav>
+<div>
+    {% if is_course_admin %}
+        <a href="dashboard">Dashboard</a>
+    {% endif %}
+            <!-- base.before_navbar_ends -->
+    {% if logoutUrl %}
+        <a href="{{ logoutUrl }}">{{ gettext('Logout') }}</a>
+    {% endif %}
+    
+    {% if is_super_admin %}
+        <a href="/admin">Admin</a>
+    {% endif %}
+
+  </ul>
+</div>
+
+
+
 
 {% endblock %}

@@ -81,7 +81,7 @@ course:
 
   # Whether the course material can be accessed without requiring users to log
   # in or register.
-  browsable: true
+  browsable: False
 
   # Google Analytics tag: Fill this in with a value obtained by signing up
   # at http://www.google.com/analytics.  Note that you may wish instead to
@@ -110,6 +110,7 @@ course:
   google_tag_manager_id: ''
 
 
+
 ########################
 # Course preview page
 ########################
@@ -123,6 +124,7 @@ preview:
 ##########################
 # Course registration form
 ##########################
+
 
 reg_form:
   # Header text for the course registration form.

@@ -134,6 +134,15 @@
   </head>
 
   <body>
+    <!-- Add javascript for facebook like button -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
     {{course_info.base.after_body_tag_begins | safe}}
 
@@ -200,9 +209,14 @@
         </div>
         <a href="#" onclick="$('nav').slideToggle(); return false;" id="menuBtn"><img src="assets/img/menu.png" alt="Menu" width="64" height="64"/></a>
       {% if course_info.base.show_gplus_button %}
-        <span class="plusone-button" id="plusone-3" style="height: 15px; width: 70px; display: inline-block; text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial; ">
-          <g:plusone size="medium"></g:plusone>
+      <div>
+        <span style="float: right">
+         <g:plusone  size="standard" align="right"></g:plusone>
         </span>
+        <!-- add facebook like button at bast.html -->
+        <span style="float: right" class="fb-like" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></span>
+      </div>
+
       {% endif %}
 
     {% block navbar %}

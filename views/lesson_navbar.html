@@ -9,7 +9,7 @@
         <li {% if page_type == 'unit' and lesson.lesson_id == lesson_id %}class="active"{% endif %}>
 
           {% if is_progress_recorded %}
-            <div class="gcb-progress-icon-holder">
+            <div id="newa" class="gcb-progress-icon-holder">
               {% if lesson.lesson_id in lesson_progress and lesson_progress[lesson.lesson_id]['html'] == 2 %}
                 <img src="assets/lib/completed.png"
                      alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"

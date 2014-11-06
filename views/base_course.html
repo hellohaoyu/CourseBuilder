@@ -56,10 +56,10 @@
         {% if not transient_student %}
           <li><a href="student/home">{{ gettext('Progress') }}</a></li>
         {% else %}
-          <li><a href="register">{{ gettext('Registration') }}</a></li>
+          <li><a href="register">{{ gettext('Sign Up') }}</a></li>
         {% endif %}
         {% if loginUrl %}
-          <li><a href="{{ loginUrl }}">{{ gettext('Login') }}</a></li>
+          <li><a href="{{ loginUrl }}">{{ gettext('Sign In') }}</a></li>
         {% endif %}
 
         {% if logoutUrl %}

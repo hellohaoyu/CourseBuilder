@@ -40,17 +40,25 @@ from modules.review import review
 from modules.search import search
 from modules.upload import upload
 
+# from modules.FAQ import FAQ
+
 # use this flag to control debug only features
 debug = not appengine_config.PRODUCTION_MODE
 
 
 # init and enable most known modules
+
+# FAQ.register_module().enable()
+
 activity_tag.register_module().enable()
 admin.register_module().enable()
 announcements.register_module().enable()
 questions.register_module().enable()
 course_explorer.register_module().enable()
 courses.register_module().enable()
+
+
+
 dashboard.register_module().enable()
 mapreduce_module.register_module().enable()
 oeditor.register_module().enable()
@@ -58,10 +66,18 @@ review.register_module().enable()
 search.register_module().enable()
 upload.register_module().enable()
 
+
+# I added customized FAQ module
+#print FAQ.register_module()
+# print FAQ.register_module().namespaced_routes
+# print courses.register_module().namespaced_routes
+
 # register modules that are not enabled by default.
 oauth2.register_module()
 
 # compute all possible routes
+# print "All the registered routes"
+# print custom_modules.Registry.get_all_routes()
 global_routes, namespaced_routes = custom_modules.Registry.get_all_routes()
 
 # routes available at '/%namespace%/' context paths

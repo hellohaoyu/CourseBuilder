@@ -19,13 +19,15 @@ __author__ = 'Pavel Simakov (psimakov@google.com)'
 from controllers import assessments
 from controllers import lessons
 from controllers import utils
-from controllers import utils_allresources
-from controllers import utils_faq
+
 
 
 from models import content
 from models import custom_modules
 from tools import verify
+
+from controllers import utils_faq
+from controllers import utils_allresources
 
 
 custom_module = None
@@ -44,8 +46,6 @@ def register_module():
         ('/answer', assessments.AnswerHandler),
         ('/assessment', lessons.AssessmentHandler),
         ('/course', lessons.CourseHandler),
-        ('/faq', utils_faq.FaqHandler),
-        ('/allresources', utils_allresources.AllResourcesHandler),
         ('/forum', utils.ForumHandler),
         ('/preview', utils.PreviewHandler),
         ('/register', utils.RegisterHandler),
@@ -54,7 +54,8 @@ def register_module():
         ('/student/editstudent', utils.StudentEditStudentHandler),
         ('/student/home', utils.StudentProfileHandler),
         ('/student/unenroll', utils.StudentUnenrollHandler),
-        ('/unit', lessons.UnitHandler)]
+        ('/unit', lessons.UnitHandler),
+        ('/faq', utils_faq.FaqHandler),('/allresources', utils_allresources.AllResourcesHandler)]
 
     global custom_module
     custom_module = custom_modules.Module(

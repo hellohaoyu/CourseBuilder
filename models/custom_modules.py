@@ -45,6 +45,8 @@ class Module(object):
 
     @property
     def enabled(self):
+        # if self._desc == 'FAQ Module':
+        #     print self
         return self.name in Registry.enabled_module_names
 
     @property

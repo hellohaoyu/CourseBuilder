@@ -4,8 +4,8 @@ class AllResourcesHandler(BaseHandler):
 	def get(self):
 		"""Handler GET requests."""
 		# self.personalize_page_and_get_enrolled()
-		# if not self.personalize_page_and_get_enrolled():
-		# 	return
+		if not self.personalize_page_and_get_enrolled():
+			return
 		self.template_value['navbar'] = {'allresources': True}
 
 		self.render('allresources.html')

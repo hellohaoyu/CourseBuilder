@@ -113,7 +113,8 @@ table.gcb-student-data-table {
 
 #newa a{
   font-family:"Open Sans",Helvetica,Arial,sans-serif;
-  font-weight:400;font-size:1em;line-height:1.8em;color:#666;text-decoration:none;
+  font-weight:400;font-size:1em;text-decoration:none;
+  /*line-height:1.8em;color:#666;*/
 
 }
 /* unvisited link */
@@ -138,9 +139,16 @@ table.gcb-student-data-table {
 
 #gcb-nav-y a{
   font-family:"Open Sans",Helvetica,Arial,sans-serif;
-  font-weight:400;font-size:1em;line-height:1.8em;color:#666;text-decoration:none;
+  font-weight:400;font-size:1em;text-decoration:none;
+  /*line-height:1.8em;color:#666;*/
 
 }
+
+/* Button will be white*/
+#gcb-nav-y .button {
+  color:#FFF;
+}
+
 /* unvisited link */
 #gcb-nav-y a:link {
     color: #966E6E;
@@ -172,6 +180,7 @@ table.gcb-student-data-table {
   position: absolute;
   z-index: 1;
   right: 3em;
+  color:#FFF;
 }
 
 #gcb-nav-y div:hover ul {
@@ -188,7 +197,7 @@ table.gcb-student-data-table {
     background: #F8F9F5;
     margin: 0;
     padding: 0;
-    border-top: 1px solid #000000;
+    border-top: 1px solid #CB9A9A;
 }
 
 

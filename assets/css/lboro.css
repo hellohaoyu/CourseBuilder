@@ -117,15 +117,18 @@ table.gcb-student-data-table {
   /*line-height:1.8em;color:#666;*/
 
 }
+
+
 /* unvisited link */
 #newa a:link {
     color: #966E6E;
 }
 
+
 /* visited link */
-/*#newa a:visited {
-    color: #5A3CC5;
-}*/
+#newa a:visited {
+    color: #966E6E;
+}
 
 /* mouse over link */
 #newa a:hover {
@@ -133,10 +136,10 @@ table.gcb-student-data-table {
 }
 
 /* selected link */
-#newa a:active {
+/*#newa a:active {
     color: #0000FF;
 }
-
+*/
 #gcb-nav-y a{
   font-family:"Open Sans",Helvetica,Arial,sans-serif;
   font-weight:400;font-size:1em;text-decoration:none;
@@ -155,9 +158,9 @@ table.gcb-student-data-table {
 }
 
 /* visited link */
-/*#gcb-nav-y a:visited {
-    color: #5A3CC5;
-}*/
+#gcb-nav-y a:visited {
+    color: #966E6E;
+}
 
 /* mouse over link */
 #gcb-nav-y a:hover {
@@ -165,9 +168,9 @@ table.gcb-student-data-table {
 }
 
 /* selected link */
-#gcb-nav-y a:active {
+/*#gcb-nav-y a:active {
     color: #0000FF;
-}
+}*/
 
 /*#gcb-nav-y {
     position: absolute;
@@ -176,7 +179,7 @@ table.gcb-student-data-table {
 }*/
 
 #gcb-nav-y ul {
-  display: none;
+  display: block;
   position: absolute;
   z-index: 1;
   right: 3em;

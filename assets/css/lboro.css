@@ -179,7 +179,7 @@ table.gcb-student-data-table {
 }*/
 
 #gcb-nav-y ul {
-  display: block;
+  display: none;
   position: absolute;
   z-index: 1;
   right: 3em;

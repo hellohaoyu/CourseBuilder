@@ -204,8 +204,7 @@
     <!-- logo bar -->
     <header class="wrap">
       <div class="logoContainer">
-          <h1 class="logo">{{course_info.institution.logo.alt_text}}</h1>
-
+          <a href="./" id="logo">{{course_info.institution.logo.alt_text}}</a>
         </div>
         <a href="#" onclick="$('nav').slideToggle(); return false;" id="menuBtn"><img src="assets/img/menu.png" alt="Menu" width="64" height="64"/></a>
       {% if course_info.base.show_gplus_button %}

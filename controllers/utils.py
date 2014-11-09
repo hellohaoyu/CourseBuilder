@@ -441,7 +441,8 @@ class RegisterHandler(BaseHandler):
 
     def get(self):
         """Handles GET request."""
-        user = self.personalize_page_and_get_user()
+        # user = self.personalize_page_and_get_user()
+        user = self.get_user()
         if not user:
             self.redirect(
                 users.create_login_url(self.request.uri), normalize=False)

@@ -18,7 +18,7 @@ body{margin:0;padding:0;font-size:80%;background:#f0f0f0}
 .wrap{margin:0 30px}
 .left{float:left}
 .right{float:right}
-.button{padding:12px 30px;cursor:pointer;border:0;overflow:visible;font-weight:600;font-size:1em;text-decoration:none;text-transform:uppercase;white-space:nowrap;color:#fafafa;background:#2ecc71;font-family:"Open Sans",Helvetica,Arial,sans-serif;display:inline-block;width:auto}
+.button{padding:0.5em 1em; cursor:pointer;border:0;overflow:visible;font-weight:600;font-size:1em;text-decoration:none;text-transform:uppercase;white-space:nowrap;color:#fafafa;background:#2ecc71;font-family:"Open Sans",Helvetica,Arial,sans-serif;display:inline-block;width:auto;display: table-cell;}
 .button:hover{background:#25a25a}
 .button.red{background:#e74c3c}
 .button.red:hover{background:#d62c1a}
@@ -152,6 +152,8 @@ table.gcb-student-data-table {
   color:#FFF;
 }
 
+
+
 /* unvisited link */
 #gcb-nav-y a:link {
     color: #966E6E;
@@ -165,6 +167,9 @@ table.gcb-student-data-table {
 /* mouse over link */
 #gcb-nav-y ul a:hover {
     color: #000000;
+}
+#gcb-nav-y .button::before {
+  content: url('../lib/menu_white.png');
 }
 
 /* selected link */
@@ -180,7 +185,7 @@ table.gcb-student-data-table {
 
 #gcb-nav-y ul {
   display: none;
-/*  position: absolute;*/
+  position: absolute;
   z-index: 1;
   right: 12em;
   color:#FFF;
@@ -191,7 +196,7 @@ table.gcb-student-data-table {
 }
 
 #gcb-nav-y div:hover ul li{
-  display: block;;
+  display: block;
 
 }
 

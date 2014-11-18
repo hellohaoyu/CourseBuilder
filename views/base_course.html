@@ -37,14 +37,21 @@
         {% endif %}
         <li><a href="announcements">{{ gettext('Announcements') }}</a></li>
         <li class="active"><a href="course">{{ gettext('Course') }}</a></li>
-        <li class="active"><a href="allresources">{{ gettext('Resources') }}</a></li>
-        <li class="active"><a href="faq">{{ gettext('FAQ') }}</a></li>
+        {% if not transient_student %}
+          <li {% if navbar.forum %}class='active'{% endif %}>
+            {# I18N: Navbar tab. #}
+            <a href="student/home">{{ gettext('Progress') }} </a>
+          </li>
+        {% endif %}
+
+        
         {% if course_info.course.forum_embed_url  and not transient_student %}
           <li {% if navbar.forum %}class='active'{% endif %}>
             {# I18N: Navbar tab. #}
             <a href="forum">{{ gettext('Forum') }}</a>
           </li>
         {% endif %}
+        <li class="active"><a href="faq">{{ gettext('FAQ') }}</a></li>
 
         {% if show_course_explorer_tab and logoutUrl %}
           <li class="gcb-pull-right">
@@ -60,7 +67,9 @@
         {% endif %}
 
         {% if not transient_student %}
-          <li><a href="student/home">{{ gettext('Progress') }} </a></li>
+          
+
+          <li class="active"><a href="allresources">{{ gettext('Resources') }}</a></li>
         {% endif %}
         {% if loginUrl or transient_student%}
           <li><a href="register">{{ gettext('Sign In') }}</a></li>

@@ -15,5 +15,9 @@ class FaqHandler(BaseHandler):
     if not self.get_user():
 	    self.template_value['transient_student'] = True
 	    self.template_value['loginUrl'] =  True
+    else:
+        self.template_value['transient_student'] = False
+        self.template_value['logoutUrl'] =  True
+
     self.render('faq.html')
     

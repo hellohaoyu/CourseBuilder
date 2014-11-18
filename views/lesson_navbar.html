@@ -1,6 +1,6 @@
-<div class="gcb-nav" id="gcb-nav-y" role="navigation">
-  <div style="float:right; margin-top: 0px;" id="LessonMenu" > 
-    <a role="button" class="button" style="display:inline-flex;"  target="_blank"> Lesson Menu</a>
+<div class="gcb-nav" id="gcb-nav-y" style="float:left; width:14%; margin:1em 0 0 1em;" role="navigation">
+  <div style=" margin-top: 0px; " id="LessonMenu" > 
+    <a role="button" class="button" style="display:inline-flex; padding: 0.25em 0.25em;"  target="_blank"> Lesson Menu</a>
   <ul>
     {{course_info.unit.after_leftnav_begins | safe}}
 
@@ -11,7 +11,6 @@
         <li {% if page_type == 'unit' and lesson.lesson_id == lesson_id %}class="active" {% endif %}>
 
           {% if is_progress_recorded %}
-            <div  class="gcb-progress-icon-holder">
               {% if lesson.lesson_id in lesson_progress and lesson_progress[lesson.lesson_id]['html'] == 2 %}
                 <img src="assets/lib/completed.png"
                      alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
@@ -31,10 +30,7 @@
                      class="gcb-progress-icon"
                      id="progress-notstarted-{{lesson.lesson_id}}">
               {% endif %}
-            </div>
           {% endif %}
-
-          <div class="gcb-lesson-title-with-progress">
             {% if page_type == 'unit' and lesson.lesson_id == lesson_id %}
               <span style="color: black;" >{{ unit.index }}.{{ lesson.index }} {{ lesson.title }} </span>
             {% else %}
@@ -42,7 +38,7 @@
                 {{ unit.index }}.{{ lesson.index }} {{ lesson.title }}
               </a>
             {% endif %}
-          </div>
+
 
         {% if not lesson.now_available and is_course_admin %}
           <span class="gcb-grayed">

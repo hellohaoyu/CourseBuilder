@@ -25,7 +25,10 @@
 <section class="main">
       <div class="wrap">
       <section class="box left">
-        <div class="boxInner">
+         {% if lessons %}
+            {% include 'lesson_navbar.html' %}
+          {% endif %}
+        <div class="boxInner" style ="float:right; width:80%;">
 
         <script>
           var questionData = {};
@@ -54,9 +57,7 @@
           </div>
           <!-->
 
-          {% if lessons %}
-            {% include 'lesson_navbar.html' %}
-          {% endif %}
+
           <!--
             <div>
               <h1 class="lessonTitle">

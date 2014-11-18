@@ -436,6 +436,54 @@ class PreviewHandler(BaseHandler):
         self.render('preview.html')
 
 
+class AboutHandler(BaseHandler):
+    """Handler for viewing course preview."""
+
+    def get(self):
+        """Handles GET requests."""
+        user = self.personalize_page_and_get_user()
+        # if user is None:
+        #     student = TRANSIENT_STUDENT
+        # else:
+        #     student = Student.get_enrolled_student_by_email(user.email())
+        #     if not student:
+        #         student = TRANSIENT_STUDENT
+
+        # If the course is browsable, or the student is logged in and
+        # registered, redirect to the main course page.
+        # if ((student and not student.is_transient) or
+        #     self.app_context.get_environ()['course']['browsable']):
+        #     self.redirect('/course')
+        #     return
+
+        self.template_value['transient_student'] = False
+        self.template_value['can_register'] = self.app_context.get_environ(
+            )['reg_form']['can_register']
+        self.template_value['navbar'] = {'course': True}
+        self.template_value['units'] = self.get_units()
+        self.template_value['show_registration_page'] = False
+
+        # course = self.app_context.get_environ()['course']
+        # self.template_value['video_exists'] = bool(
+        #     'main_video' in course and
+        #     'url' in course['main_video'] and
+        #     course['main_video']['url'])
+        # self.template_value['image_exists'] = bool(
+        #     'main_image' in course and
+        #     'url' in course['main_image'] and
+        #     course['main_image']['url'])
+
+        # if user:
+        #     profile = StudentProfileDAO.get_profile_by_user_id(user.user_id())
+        #     additional_registration_fields = self.app_context.get_environ(
+        #         )['reg_form']['additional_registration_fields']
+        #     if profile is not None and not additional_registration_fields:
+        #         self.template_value['show_registration_page'] = False
+        #         self.template_value['register_xsrf_token'] = (
+        #             XsrfTokenManager.create_xsrf_token('register-post'))
+        self.render('preview.html')
+
+
 class RegisterHandler(BaseHandler):
     """Handler for course registration."""
 

@@ -56,21 +56,21 @@ course:
   # Forum URL. For details, see
   #
   #     http://code.google.com/p/course-builder/wiki/WebForums.
-  forum_email: mooc1003@googlegroups.com
-  forum_url: https://groups.google.com/group/mooc1003
+  forum_email: active-recruiting-online-discussion@googlegroups.com
+  forum_url: https://groups.google.com/d/forum/active-recruiting-online-discussion
 
   # Forum embedding URL. This link is used to embed the forum in an iframe on
   # the forum.html page. Set this value to False if you don't use forum and/or
   # to remove the Forum link from the student navigation bar.
-  forum_embed_url: https://groups.google.com/forum/embed/?place=forum/mooc1003
+  forum_embed_url: https://groups.google.com/forum/embed/?place=forum/active-recruiting-online-discussion
 
 
   # URL for the mailing list where students can register to receive course
   # announcements. For details, see
   #
   #     http://code.google.com/p/course-builder/wiki/CreateEmailList
-  announcement_list_email: My-Course-Announce@googlegroups.com
-  announcement_list_url: https://groups.google.com/group/My-Course-Announce
+  announcement_list_email: active-recruiting-online-course@googlegroups.com
+  announcement_list_url: https://groups.google.com/d/forum/active-recruiting-online-course
 
   # Locale for internationalization. See modules/i18n/resources/locale for
   # available locales.

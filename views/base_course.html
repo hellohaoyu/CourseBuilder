@@ -29,6 +29,12 @@
   <nav>
       <ul>
         <!-- base.after_navbar_begins -->
+        {% if not transient_student %}
+          <li {% if navbar.forum %}class='active'{% endif %}>
+            {# I18N: Navbar tab. #}
+            <a href="about">{{ gettext('About') }}</a>
+          </li>
+        {% endif %}
         <li><a href="announcements">{{ gettext('Announcements') }}</a></li>
         <li class="active"><a href="course">{{ gettext('Course') }}</a></li>
         <li class="active"><a href="allresources">{{ gettext('Resources') }}</a></li>

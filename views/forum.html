@@ -30,23 +30,15 @@
             width="900"
             height="700">
           </iframe>
-
-          {% if course_info.course.forum_embed_url %}
-          <script type="text/javascript">
-              document.getElementById("forum_embed").src =
-              "{{course_info.course.forum_embed_url}}"
-              + "&showsearch=true&showpopout=true&showtabs=false"
-              + "&parenturl=" + encodeURIComponent(window.location.href);
-          </script>
-          {% endif %}
-
-
-          <script type="text/javascript">
-            document.getElementById('forum_embed').src =
-               'https://groups.google.com/forum/embed/?place=forum/mooc1003'
-               + '&showsearch=true&showpopout=true&showtabs=false'
-               + '&parenturl=' + encodeURIComponent(window.location.href);
-          </script>
+{% if course_info.course.forum_embed_url %}
+<script type="text/javascript">
+ document.getElementById("forum_embed").src =
+  "{{course_info.course.forum_embed_url}}" + 
+  "&showsearch=true&showpopout=true";
+  console.log(encodeURIComponent(window.location.href));
+  console.log(document.getElementById("forum_embed").src);
+</script>
+{% endif %}
         </div>
       </section>
       </div>

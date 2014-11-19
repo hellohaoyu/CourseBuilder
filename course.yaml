@@ -33,9 +33,7 @@ course:
 
   # Main page blurb. (The '|' at the beginning enables multi-line input.)
   blurb: |
-    Google Search makes it amazingly easy to find information. Come learn about
-    the powerful advanced tools we provide to help you find just the right
-    information when the stakes are high.
+    Lighthouse CC dedicates to help ingcomputer science teachers from community college to attract diverse background of students into their clases.
 
   # Information about the instructor to display on the main page.
   instructor_details: 'Daniel Russell <br> Senior Research Scientist <br> Google, Inc.'

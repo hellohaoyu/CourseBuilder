@@ -46,6 +46,7 @@
             </h1>
           </div>
           <!-->
+
           <div class="gcb-article tab-content" role="main">
 
             {% if not lesson %}
@@ -56,6 +57,20 @@
                 </div>
               </div>
             {% endif %}
+            <div class="gcb-button-box" style ="float: right;">
+                    <div class="gcb-prev-button" style="margin: 5px 2em 5px 40px">
+                      
+                        
+                        <a href="unit?unit=1&amp;lesson=3"> Previous Page </a>
+                      
+                    </div>
+                    <div class="gcb-next-button">
+                      
+                        
+                        <a href="unit?unit=1&amp;lesson=4"> Next Page </a>
+                      
+                    </div>
+                  </div>
 
             {% for lesson in lessons %}
               {% if lesson.lesson_id == lesson_id %}

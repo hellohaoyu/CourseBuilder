@@ -84,7 +84,7 @@
                 <div class="gcb-aside gcb-button-box">
                   {% if lesson.now_available or is_course_admin %}
                     <div class="gcb-cols">
-                      <div class="gcb-col-7">
+                      <div class="gcb-col-7" style="float: left;">
                         <h1 class="lessonTitle">
                           {{ gettext('Lesson %(id)s.%(lesson)s - %(title)s', id=unit.index, lesson = lesson.lesson_id, title=lesson.title) }}
                           {% if not lesson.now_available and is_course_admin %}
@@ -98,16 +98,16 @@
 
                       <!-- Disable Text version for Unit Page -->
                    
-<!--                       <div class="gcb-col-3">
-                        <p style="float:right; margin-top: 0px;">
+                      <div class="gcb-col-3">
+                        <p style="float:right; margin: 20px 0;">
                           {% if lesson.notes %}
                           <a role="button" class="button" id="lessonNotesLink" href="{{ lesson.notes }}" target="_blank">
                             {# I18N: Link to a text version of a lesson video. #}
-                            {{ gettext('Slides here') }}
+                            {{ gettext('Materials') }}
                           </a>
                           {% endif %}
                         </p>
-                      </div> -->
+                      </div>
 
                     </div><!-- /gcb-cols -->
 

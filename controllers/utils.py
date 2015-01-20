@@ -456,12 +456,18 @@ class AboutHandler(BaseHandler):
         #     self.redirect('/course')
         #     return
 
-        self.template_value['transient_student'] = False
         self.template_value['can_register'] = self.app_context.get_environ(
             )['reg_form']['can_register']
         self.template_value['navbar'] = {'course': True}
         self.template_value['units'] = self.get_units()
-        self.template_value['show_registration_page'] = False
+        if user:
+            profile = StudentProfileDAO.get_profile_by_user_id(user.user_id())
+            additional_registration_fields = self.app_context.get_environ(
+                )['reg_form']['additional_registration_fields']
+            if profile is not None and not additional_registration_fields:
+                self.template_value['show_registration_page'] = False
+                self.template_value['register_xsrf_token'] = (
+                    XsrfTokenManager.create_xsrf_token('register-post'))        
 
         # course = self.app_context.get_environ()['course']
         # self.template_value['video_exists'] = bool(

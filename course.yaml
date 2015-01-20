@@ -33,7 +33,7 @@ course:
 
   # Main page blurb. (The '|' at the beginning enables multi-line input.)
   blurb: |
-    Lighthouse CC dedicates to help ingcomputer science teachers from community college to attract diverse background of students into their clases.
+    Lighthouse CC dedicates to helping computer science teachers from community colleges to attract diverse backgrounds of students into their classes.
 
   # Information about the instructor to display on the main page.
   instructor_details: 'Daniel Russell <br> Senior Research Scientist <br> Google, Inc.'

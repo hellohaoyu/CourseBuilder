@@ -18,7 +18,7 @@
       </p>
 
       {% if transient_student %}
-        <a class="button" href="register" role="button" style="padding: 18px 60px;font-size: 2em;">
+        <a class="button" href="register" role="button" style="padding: 0.5em 2em;font-size: 2em;">
           {{ gettext('Enroll') }}
         </a>
       {% endif %}
@@ -27,8 +27,6 @@
   </section>
   {{course_info.preview.after_top_content_ends | safe}}
 {% endblock %}
-
-
 
 {% block main_content %}
 

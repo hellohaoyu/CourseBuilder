@@ -18,7 +18,7 @@ body{margin:0;padding:0;font-size:80%;background:#f0f0f0}
 .wrap{margin:0 30px}
 .left{float:left}
 .right{float:right}
-.button{padding:0.5em 1em; cursor:pointer;border:0;overflow:visible;font-weight:600;font-size:1em;text-decoration:none;text-transform:uppercase;white-space:nowrap;color:#fafafa;background:#2ecc71;font-family:"Open Sans",Helvetica,Arial,sans-serif;display:inline-block;width:auto;display: table-cell;}
+.button{padding:0.5em 1em; cursor:pointer;border:0;overflow:visible;font-weight:600;font-size:1em;text-decoration:none;text-transform:uppercase;white-space:nowrap;color:#fafafa;background:#2ecc71;font-family:"Open Sans",Helvetica,Arial,sans-serif;display:inline-block;width:auto;display: table-cell;box-shadow:3px 3px 1px #888888;}
 .button:hover{background:#25a25a}
 .button.red{background:#e74c3c}
 .button.red:hover{background:#d62c1a}

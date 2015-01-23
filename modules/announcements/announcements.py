@@ -140,8 +140,9 @@ class AnnouncementsHandler(BaseHandler, ReflectiveRequestHandler):
         self.template_value['transient_student'] = transient_student
 
         items = AnnouncementEntity.get_announcements()
-        if not items and AnnouncementsRights.can_edit(self):
-            items = self.put_sample_announcements()
+        # Disable the default anouncement 
+        # if not items and AnnouncementsRights.can_edit(self):
+        #     items = self.put_sample_announcements()
 
         items = AnnouncementsRights.apply_rights(self, items)
 
@@ -182,6 +183,10 @@ class AnnouncementsHandler(BaseHandler, ReflectiveRequestHandler):
         entity = AnnouncementEntity.get(key)
         if entity:
             entity.delete()
+            # print "abc"
+            # Test delete
+            # MemcacheManager.delete('announcements')
+        #print "efj"
         self.redirect('/announcements')
 
     def post_add(self):

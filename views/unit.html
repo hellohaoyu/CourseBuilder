@@ -111,7 +111,9 @@
 
                     </div><!-- /gcb-cols -->
 
-                    {% if objectives %}
+                    <!--Comment: Disable to show the content  above on the video of a lesson-->
+
+<!--                     {% if objectives %}
                       <div class="gcb-lesson-content">
                         {{ objectives | gcb_tags}}
                         {% if lesson.scored %}
@@ -124,7 +126,7 @@
                           <div class="qt-grade-report qt-hidden"></div>
                         {% endif %}
                       </div>
-                    {% endif %}
+                    {% endif %} -->
 
                     {% if lesson.video %}
                     <!--

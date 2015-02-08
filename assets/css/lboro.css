@@ -3,7 +3,7 @@
 body{font-family:"Open Sans",Helvetica,Arial,sans-serif;font-weight:400;font-size:1em;color:#666}
 h1,h2,h3,h4{margin:0 0 1.5em 0;padding:0}
 h1{font-family:"Raleway",Helvetica,Arial,sans-serif;font-weight:100;font-size:4em;color:#fafafa;text-shadow:1px 1px 0 rgba(0,0,0,0.75)}
-h1.lessonTitle{font-size:2em;color:#333;text-shadow:none;margin:20px 0}
+h1.lessonTitle{font-size:2em;color:#333;text-shadow:none;margin:15px 0}
 h2{font-family:"Raleway",Helvetica,Arial,sans-serif;font-weight:300;font-size:1.5em;color:#333;text-transform:uppercase}
 h3{font-family:"Open Sans",Helvetica,Arial,sans-serif;font-weight:400;font-size:1.25em;color:#666}
 h4{font-family:"Open Sans",Helvetica,Arial,sans-serif;font-weight:700;font-size:1em;color:#333}
@@ -270,6 +270,10 @@ footer .footerInfo img{display:block;margin:10px auto}
 /* 1 . Disable margin on wrap class --Used in about.html
 when using a wrap inside a wrap, disable the margin in second wrap*/
 .disable_non_first_wrap_margin {
-    margin: 0 0;  
+    margin: 0;  
+}
+
+.gcb-unit-header {
+    margin: 0;
 }
 

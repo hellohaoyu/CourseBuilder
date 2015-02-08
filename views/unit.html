@@ -48,15 +48,13 @@
                 class="button edit">Edit lesson</a>
             {% endif %}
           {% endif %}
-          <!--
+
           <div>
-            <h1 class="gcb-unit-header">
+            <h2 class="gcb-unit-header" >
               {# I18N: Header text for a unit page. #}
               {{ gettext('Unit %(id)s - %(title)s', id=unit.index, title=unit.title) }}
-            </h1>
+            </h2>
           </div>
-          <!-->
-
 
           <!--
             <div>
@@ -86,7 +84,8 @@
                     <div class="gcb-cols">
                       <div class="gcb-col-7" style="float: left;">
                         <h1 class="lessonTitle">
-                          {{ gettext('Lesson %(id)s.%(lesson)s - %(title)s', id=unit.index, lesson = lesson.lesson_id, title=lesson.title) }}
+                              {{ unit.index }}.{{ lesson.index }} {{ lesson.title }}
+<!--                           {{ gettext('Lesson %(id)s.%(lesson)s - %(title)s', id=unit.index, lesson = lesson.lesson_id, title=lesson.title) }} -->
                           {% if not lesson.now_available and is_course_admin %}
                             <span id="lesson-title-private">
                               (Private)

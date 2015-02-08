@@ -24,6 +24,28 @@
 {% block main_content %}
 <section class="main">
       <div class="wrap">
+        
+{% if objectives %}
+<section class="box left">
+        <div class="boxInner">
+          <h2>OverView</h2>
+
+                      <div class="gcb-lesson-content">
+                        {{ objectives | gcb_tags}}
+                        {% if lesson.scored %}
+                          <div class="qt-grade-scored-lesson qt-hidden">
+                            <button class="gcb-button qt-check-answer-button">
+                              {# I18N: Button at the bottom of a lesson page offering the student the opportunity to grade his/her answers. #}
+                              {{ gettext('Grade Questions') }}
+                            </button>
+                          </div>
+                          <div class="qt-grade-report qt-hidden"></div>
+                        {% endif %}
+                      </div>
+
+          </div>
+        </section>
+{% endif %}
       <section class="box left">
          {% if lessons %}
             {% include 'lesson_navbar.html' %}
@@ -253,6 +275,28 @@
 
         </div>
       </section>
+
+{% if objectives %}
+<section class="box left">
+        <div class="boxInner">
+          <h2>OverView</h2>
+
+                      <div class="gcb-lesson-content">
+                        {{ objectives | gcb_tags}}
+                        {% if lesson.scored %}
+                          <div class="qt-grade-scored-lesson qt-hidden">
+                            <button class="gcb-button qt-check-answer-button">
+                              {# I18N: Button at the bottom of a lesson page offering the student the opportunity to grade his/her answers. #}
+                              {{ gettext('Grade Questions') }}
+                            </button>
+                          </div>
+                          <div class="qt-grade-report qt-hidden"></div>
+                        {% endif %}
+                      </div>
+
+          </div>
+        </section>
+{% endif %}
       </div>
 </section>
 {% endblock %}

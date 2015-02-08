@@ -11,7 +11,7 @@
 {% block top_content %}
   <section class="hero">
     <div class="wrap">
-      <h1>  {{course_info.course.title}}</h1>
+      <h1 class="banner_font_on_front_page">  {{course_info.course.title}}</h1>
 
       <p>
       {{course_info.course.blurb | gcb_tags}}
@@ -110,7 +110,7 @@
         </div>
       </section>
     </div>
-    <div class="wrap">
+    <div class="wrap disable_non_first_wrap_margin">
     <div class = "summary">
         <section class="box left">
         <div class="boxInner">

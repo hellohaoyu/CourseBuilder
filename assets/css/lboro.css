@@ -293,3 +293,7 @@ when using a wrap inside a wrap, disable the margin in second wrap*/
 .margin-right-button {
   margin-right: 2em;
 }
+
+.clear-both-float {
+  clear:both;
+}

@@ -49,9 +49,19 @@
           </div>
         </div>
 
+                      <div class="gcb-col-3 float-right margin-right-button ">
+                        <p >
+                          {% if lesson.notes %}
+                          <a role="button" class="button" id="lessonNotesLink" href="{{ lesson.notes }}" target="_blank">
+                            {# I18N: Link to a text version of a lesson video. #}
+                            {{ gettext('Materials') }}
+                          </a>
+                          {% endif %}
+                        </p>
+                      </div>
 
                       {% if objectives %}
-                      <div class="gcb-lesson-content float-left">
+                      <div class="gcb-lesson-content clear-both-float">
                         {{ objectives | gcb_tags}}
                         {% if lesson.scored %}
                           <div class="qt-grade-scored-lesson qt-hidden">
@@ -68,16 +78,7 @@
           </div>
 
                    
-                      <div class="gcb-col-3 float-right margin-right-button ">
-                        <p >
-                          {% if lesson.notes %}
-                          <a role="button" class="button" id="lessonNotesLink" href="{{ lesson.notes }}" target="_blank">
-                            {# I18N: Link to a text version of a lesson video. #}
-                            {{ gettext('Materials') }}
-                          </a>
-                          {% endif %}
-                        </p>
-                      </div>
+
 
 
         </section>

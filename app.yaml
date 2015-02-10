@@ -1,4 +1,4 @@
-application: coursebuilder01 # chenhaoyu1006 #  FIXME: Replace this with your application id
+application: coursebuilder03 # chenhaoyu1006 #  FIXME: Replace this with your application id
 version: 1
 runtime: python27
 api_version: 1

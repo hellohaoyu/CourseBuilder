@@ -277,3 +277,19 @@ when using a wrap inside a wrap, disable the margin in second wrap*/
     margin: 0;
 }
 
+.lessonTitle  {
+    margin: 0.6em 0.8em 0 0 ;
+    font-size: 1em;
+}
+
+.float-left{
+  float: left;
+}
+
+.float-right{
+  float: right;
+}
+
+.margin-right-button {
+  margin-right: 2em;
+}

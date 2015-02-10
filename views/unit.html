@@ -24,13 +24,32 @@
 {% block main_content %}
 <section class="main">
       <div class="wrap">
+
+<!-- Content Box on the top of video -->
+
         
-{% if objectives %}
+
 <section class="box left">
         <div class="boxInner">
-          <h2>OverView</h2>
+          <div>
+          <h2 class="gcb-unit-header" >
+              {# I18N: Header text for a unit page. #}
+              {{ gettext('Unit %(id)s - %(title)s', id=unit.index, title=unit.title) }}
+            </h2>
+                                    <h2 class="gcb-unit-header lessonTitle">
+                              {{ unit.index }}.{{ lesson.index }} {{ lesson.title }}
+<!--                           {{ gettext('Lesson %(id)s.%(lesson)s - %(title)s', id=unit.index, lesson = lesson.lesson_id, title=lesson.title) }} -->
+                          {% if not lesson.now_available and is_course_admin %}
+                            <span id="lesson-title-private">
+                              (Private)
+                            </span>
+                          {% endif %}
+                        </h2>
+          </div>
 
-                      <div class="gcb-lesson-content">
+
+                      {% if objectives %}
+                      <div class="gcb-lesson-content float-left">
                         {{ objectives | gcb_tags}}
                         {% if lesson.scored %}
                           <div class="qt-grade-scored-lesson qt-hidden">
@@ -42,10 +61,27 @@
                           <div class="qt-grade-report qt-hidden"></div>
                         {% endif %}
                       </div>
+                      {% endif %}
 
           </div>
+
+                   
+                      <div class="gcb-col-3 float-right margin-right-button ">
+                        <p >
+                          {% if lesson.notes %}
+                          <a role="button" class="button" id="lessonNotesLink" href="{{ lesson.notes }}" target="_blank">
+                            {# I18N: Link to a text version of a lesson video. #}
+                            {{ gettext('Materials') }}
+                          </a>
+                          {% endif %}
+                        </p>
+                      </div>
+
+
         </section>
-{% endif %}
+
+
+
       <section class="box left">
          {% if lessons %}
             {% include 'lesson_navbar.html' %}
@@ -71,12 +107,12 @@
             {% endif %}
           {% endif %}
 
-          <div>
+<!--           <div>
             <h2 class="gcb-unit-header" >
               {# I18N: Header text for a unit page. #}
               {{ gettext('Unit %(id)s - %(title)s', id=unit.index, title=unit.title) }}
             </h2>
-          </div>
+          </div> -->
 
           <!--
             <div>
@@ -104,18 +140,7 @@
                 <div class="gcb-aside gcb-button-box">
                   {% if lesson.now_available or is_course_admin %}
                     <div class="gcb-cols">
-                      <div class="gcb-col-7" style="float: left;">
-                        <h1 class="lessonTitle">
-                              {{ unit.index }}.{{ lesson.index }} {{ lesson.title }}
-<!--                           {{ gettext('Lesson %(id)s.%(lesson)s - %(title)s', id=unit.index, lesson = lesson.lesson_id, title=lesson.title) }} -->
-                          {% if not lesson.now_available and is_course_admin %}
-                            <span id="lesson-title-private">
-                              (Private)
-                            </span>
-                          {% endif %}
-                        </h1>
 
-                      </div>
 
                       <!-- Disable Text version for Unit Page -->
                    
@@ -276,7 +301,8 @@
         </div>
       </section>
 
-{% if objectives %}
+<!-- Put the content box at the bottom of the page -->
+<!-- {% if objectives %}
 <section class="box left">
         <div class="boxInner">
           <h2>OverView</h2>
@@ -296,7 +322,7 @@
 
           </div>
         </section>
-{% endif %}
+{% endif %} -->
       </div>
 </section>
 {% endblock %}

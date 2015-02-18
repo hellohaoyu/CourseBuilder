@@ -45,8 +45,10 @@
             </tr>
             <tr>
               <ul id="newa" style="list-style-type:none;">
+                
                 {% for unit in units %}
                   {% if unit.now_available or is_course_admin %}
+                    <!-- type == A means accessment -->
                     {% if unit.type == 'A' %}
                       <li><p class="gcb-top-content">
                         {% if not transient_student %}
@@ -114,9 +116,12 @@
                                 {% endif %}
                               </span>
                             {% endif %}
-
+                            <ul>
+                            </ul>
                         {% endif %}
 
+
+                    <!-- type == u means unit -->
                     {% elif unit.type == 'U' %}
                       <li><p class="gcb-top-content">
                         {% if is_progress_recorded and not transient_student %}
@@ -147,9 +152,13 @@
                           {# I18N: A row in the course schedule. #}
                           {{ gettext('Unit %(id)s - %(title)s', id=unit.index, title=unit.title) }}
                         </a>
-                          {% if lessons %}
-                            {% include 'lesson_navbar.html' %}
-                          {% endif %}
+                        <!-- <b> I am strong<b/> -->
+                         <!--  {% if lessons %} -->
+                      <!--   {% include 'lesson_navbar.html' %} -->
+                      <!--     {% endif %} -->
+  
+ 
+
                     {% elif unit.type == 'O' %}
                       <li>
                         <p class="gcb-top-content">
@@ -164,13 +173,21 @@
                           <span class="gcb-progress-empty"></span>
                           Error: unit type not recognized.
                     {% endif %}
-                        {% if not unit.now_available and is_course_admin %}
+                    {% if not unit.now_available and is_course_admin %}
                           (Private)
                         {% endif %}
                         </p>
                       </li>
-                  {% endif %}
-
+                    {% endif %}
+                  <ul>
+                    {%  for lesson in allLessons[unit.unit_id] %}
+                    <li {% if page_type == 'unit' and lesson.lesson_id == lesson_id %}class="active" {% endif %}>
+                    <a href="unit?unit={{ unit.unit_id }}&lesson={{ lesson.lesson_id }}">
+                    {{ unit.index }}.{{ lesson.index }} {{ lesson.title }}
+                    </a>
+                    </li>
+                    {% endfor %}
+                  </ul>
                 {% endfor %}
               </ul>
             </tr>

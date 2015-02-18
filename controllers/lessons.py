@@ -170,6 +170,17 @@ class CourseHandler(BaseHandler):
         self.template_value['units'] = self.get_units()
         self.template_value['show_registration_page'] = True
 
+
+        # build a dictionary to store all the lessons for the course
+        # the key is unit id.
+        allLessons = {}
+        for unit in self.get_units():
+            lessons = self.get_course().get_lessons(unit.unit_id)
+            allLessons[unit.unit_id] = lessons
+
+        self.template_value['allLessons'] = allLessons
+
+
         if student and not student.is_transient:
             self.augment_assessment_units(student)
         elif user:
@@ -198,6 +209,7 @@ class CourseHandler(BaseHandler):
         self.template_value['is_progress_recorded'] = (
             CAN_PERSIST_ACTIVITY_EVENTS.value)
         self.template_value['navbar'] = {'course': True}
+
         self.render('course.html')
 
 
